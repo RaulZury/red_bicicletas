@@ -1,4 +1,4 @@
-var Bicicleta = require('../../../models/bicicleta');
+var Bicicleta = require('../../models/bicicleta');
 
 beforeEach(() => {Bicicleta.allBicis= [];});
 
