@@ -1,3 +1,4 @@
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -20,6 +21,7 @@ var usuariosApiRouter = require('./routes/api/usuarios');
 const store = new session.MemoryStore;
 
 var app = express();
+
 app.set('secretKey', 'jwt_pwd_!!223344');
 app.use(session({
   cookie: {maxAge: 240*60*60*1000},
@@ -32,7 +34,9 @@ app.use(session({
 var mongoose = require('mongoose');
 const authControllerApi = require('./controllers/api/authControllerApi');
 
-var mongoDB = 'mongodb://localhost/red_bicicletas';
+//var mongoDB = 'mongodb://localhost/red_bicicletas';
+//var mongoDB = 'mongodb+srv://admin:2ahzA4CEZ4en7Ba@zurielcluster.x9zyk.mongodb.net/test?retryWrites=true&w=majority';
+var mongoDB = process.env.MONGO_URI;
 mongoose.connect(mongoDB, {useNewUrlParser: true});
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
